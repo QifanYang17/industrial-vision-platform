@@ -1,5 +1,9 @@
 # MVTec AD —— 先从 bottle 单类别跑通。数据走 DVC，不进 git。
+# 首次运行时 anomalib 会自动把 MVTec AD 数据集下载到 root（约 4.9GB）。
 name: mvtec_bottle
-root: data/mvtec           # DVC 拉取后的本地路径
+root: data/mvtec           # 数据集本地路径（gitignored；后续接 DVC 指针）
 category: bottle
 image_size: 256            # 16GB 内存约束下的折中分辨率
+train_batch_size: 32
+eval_batch_size: 32
+num_workers: 4             # 16GB 内存下保守取值，降低 dataloader 内存峰值

@@ -1,19 +1,26 @@
-"""数据集获取脚本（骨架）。
+"""数据集准备脚本：重建 MVTec AD 目录结构（绕开 anomalib 失效的下载 URL）。
 
-约定：数据集不进 git，用 DVC 管理（data/ 下仅提交 .dvc 指针）。
-待实现：MVTec AD 下载/校验 + `dvc add data/mvtec` 生成指针。
+用法：
+    uv run python scripts/download_data.py --category bottle --root data/mvtec
+
+约定：数据集不进 git（gitignored），后续可对 data/mvtec 接 DVC 指针做数据版本管理。
+实际重建逻辑见 ``ivp.modules.defect.data.prepare_mvtec``。
 """
 
 from __future__ import annotations
 
-from ivp.common.logging import get_logger
+import argparse
 
-logger = get_logger(__name__)
+from ivp.modules.defect.data import prepare_mvtec
 
 
 def main() -> None:
-    """下载并用 DVC 跟踪数据集（占位）。"""
-    logger.warning("【骨架占位】数据下载脚本待实现（MVTec AD + DVC 指针）")
+    """命令行入口。"""
+    parser = argparse.ArgumentParser(description="Prepare MVTec AD dataset from HF mirror.")
+    parser.add_argument("--category", default="bottle", help="MVTec 类别，如 bottle")
+    parser.add_argument("--root", default="data/mvtec", help="数据根目录")
+    args = parser.parse_args()
+    prepare_mvtec(args.root, args.category)
 
 
 if __name__ == "__main__":

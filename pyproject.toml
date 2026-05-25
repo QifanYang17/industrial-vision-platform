@@ -32,6 +32,7 @@ defect = [
     "anomalib>=1.1",          # 无监督异常检测框架（PatchCore / EfficientAD）
     "torch>=2.2",             # MPS 后端（M4 GPU 加速）
     "torchvision>=0.17",
+    "pyarrow>=15.0",          # 读取 MVTec parquet 镜像（重建数据集目录用）
 ]
 # ── 阶段二：目标检测 + 计数 ──
 detection = [

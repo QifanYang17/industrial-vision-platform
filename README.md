@@ -43,6 +43,9 @@ uv sync --extra service     # 服务层：fastapi + gradio + onnxruntime
 
 ## 当前进度
 
-- **阶段一（进行中）**：✅ 项目骨架 + 依赖/配置/追踪底座 → ⬜ Anomalib PatchCore 在 MVTec bottle 跑通
+- **阶段一（缺陷检测，已完成）**：✅ 项目骨架 + 依赖/配置/追踪底座；✅ Anomalib PatchCore 在 MVTec AD bottle 跑通。
+  - 指标（M4 / MPS，seed=42）：**image AUROC 1.000 · pixel AUROC 0.986 · PRO 0.946**。
+  - 完整报告（含漏检率 vs 过杀率阈值分析与权衡曲线）：[docs/results/defect-patchcore-bottle](docs/results/defect-patchcore-bottle/report.md)。
+  - 复现：`uv sync --extra defect && uv run ivp-train`（数据集自动从 HF 镜像准备）。
 - 阶段二：YOLO26 + ByteTrack 检测计数
 - 阶段三：OCR 管道 + 统一 Gradio 界面 + Docker + CI
