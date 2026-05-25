@@ -1,0 +1,42 @@
+# CI：lint + test + docker build。对应 CLAUDE.md「GitHub Actions 做 lint+test+docker build」。
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python 3.11
+        run: uv python install 3.11
+
+      - name: Install deps (base + dev)
+        run: uv sync --group dev
+
+      - name: Ruff lint
+        run: uv run ruff check .
+
+      - name: Ruff format check
+        run: uv run ruff format --check .
+
+      - name: Pytest
+        # CI 无 GPU：用 hardware=cpu 覆盖，避免探测 MPS
+        run: uv run pytest
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: lint-test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build service image (不推送，仅验证可构建)
+        run: docker build -f docker/Dockerfile -t ivp:ci .

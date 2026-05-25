@@ -1,0 +1,12 @@
+# 根配置：用 defaults 列表把各 group 组合成完整配置。
+# 命令行可覆盖整组（如 module=detection）或单项（如 seed=1 hardware.device=cpu）。
+defaults:
+  - module: defect          # 任务模块：defect | detection | ocr
+  - model: patchcore        # 模型：patchcore | efficientad | ...
+  - dataset: mvtec_bottle   # 数据集
+  - tracking: mlflow        # 实验追踪后端
+  - hardware: mps           # 设备 / 可复现性
+  - _self_                  # 让本文件的下列键覆盖 group 默认值
+
+# 全局随机种子（可复现性，见 ivp.common.seed）
+seed: 42

@@ -1,0 +1,4 @@
+# PatchCore（缺陷检测首选）。超参占位，下一步接 anomalib 时补全。
+name: patchcore
+backbone: wide_resnet50_2   # anomalib 默认特征提取骨干
+coreset_sampling_ratio: 0.1

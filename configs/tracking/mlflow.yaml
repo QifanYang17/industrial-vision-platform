@@ -1,0 +1,5 @@
+# MLflow 实验追踪。tracking_uri 默认 sqlite 后端（file store 已于 2026-02 弃用，
+# sqlite 是官方推荐的本地后端）。可被 .env / 命令行覆盖；接远程改成 http://host:5000。
+enabled: true
+tracking_uri: sqlite:///outputs/mlflow.db
+experiment_name: ivp-defect

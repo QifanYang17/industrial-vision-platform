@@ -1,0 +1,5 @@
+# MVTec AD —— 先从 bottle 单类别跑通。数据走 DVC，不进 git。
+name: mvtec_bottle
+root: data/mvtec           # DVC 拉取后的本地路径
+category: bottle
+image_size: 256            # 16GB 内存约束下的折中分辨率

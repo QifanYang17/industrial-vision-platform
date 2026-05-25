@@ -1,0 +1,3 @@
+# EfficientAD（缺陷检测对比方法）。超参占位。
+name: efficientad
+model_size: small           # small | medium

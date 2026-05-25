@@ -1,0 +1,41 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ── 虚拟环境 / uv ──
+.venv/
+# 注意：uv.lock 必须提交（保证可复现），不要忽略
+
+# ── 环境变量 ──
+.env
+
+# ── ML 产物（不进 git）──
+# 数据集走 DVC：data/ 下只提交 .dvc 指针与 .gitkeep，原始数据本身忽略
+data/**
+!data/.gitkeep
+!data/**/*.dvc
+outputs/**
+!outputs/.gitkeep
+mlruns/
+mlflow.db
+mlartifacts/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# ── 编辑器 / 系统 ──
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/launch.json

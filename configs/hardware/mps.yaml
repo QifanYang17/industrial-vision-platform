@@ -1,0 +1,3 @@
+# 硬件 / 可复现性。M4 默认走 MPS；CI 或无 GPU 环境用 hardware=cpu 覆盖。
+device: mps                # mps | cpu | cuda
+deterministic: true
